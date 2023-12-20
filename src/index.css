@@ -77,3 +77,13 @@ code {
 .custom-work-days.e-schedule .template-wrap .resource-image.robson {
     background-image: url('https://ej2.syncfusion.com/react/demos/src/schedule/images/robson.png');
 }
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+}
+
+.float-right {
+    float: right;
+    padding-right: 15px;
+    padding-bottom: 25px;
+}
