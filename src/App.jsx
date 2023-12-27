@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useRef } from "react";
+import { PropertyPane } from './components/PropertyPane.js';
 import { loadCldr} from '@syncfusion/ej2-base';
-import riderStyles from './components/Rider/style.module.css';
+// import riderStyles from './components/Rider/style.module.css';
 import { 
   ScheduleComponent, 
   Day, 
@@ -16,150 +17,150 @@ import { addClass } from '@syncfusion/ej2-base';
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { DropDownListComponent, MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
-import { PropertyPane } from './components/PropertyPane.js';
-import Rider from './components/Rider/index.jsx';
+//import { PropertyPane } from './components/PropertyPane.js';
+// import Rider from './components/Rider/index.jsx';
+// //Localization
+// import * as numberingSystems from './culture-files/numberingSystems.json';
+// import * as gregorian from './culture-files/ca-gregorian.json';
+// import * as numbers from './culture-files/numbers.json';
+// import * as timeZoneNames from './culture-files/timeZoneNames.json';
+// import { L10n } from '@syncfusion/ej2-base'; 
+// loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
+
+// L10n.load({
+//   he: {
+//     schedule: {
+//       day: 'יום',
+//       week: 'שבוע',
+//       workWeek: 'שבוע עבודה',
+//       month: 'חודש',
+//       year: 'שָׁנָה',
+//       agenda: 'סדר יום',
+//       weekAgenda: 'סדר יום בשבוע',
+//       workWeekAgenda: 'סדר יום של שבוע עבודה',
+//       monthAgenda: 'סדר יום לחודש',
+//       today: 'היום',
+//       noEvents: 'אין אירועים',
+//       emptyContainer: 'לא נקבעו אירועים ביום זה.',
+//       allDay: 'כל היום',
+//       start: 'התחל',
+//       end: 'סוף',
+//       more: 'יותר',
+//       close: 'סגור',
+//       cancel: 'בטל',
+//       noTitle: '(ללא כותרת)',
+//       delete: 'מחק',
+//       deleteEvent: 'האירוע הזה',
+//       deleteMultipleEvent: 'מחק אירועים מרובים',
+//       selectedItems: 'פריטים שנבחרו',
+//       deleteSeries: 'סדרה שלמה',
+//       edit: 'ערוך',
+//       editSeries: 'סדרה שלמה',
+//       editEvent: 'האירוע הזה',
+//       createEvent: 'צור',
+//       subject: 'נושא',
+//       addTitle: 'הוסף כותרת',
+//       moreDetails: 'פרטים נוספים',
+//       save: 'שמור',
+//       editContent: 'איך תרצה לשנות את המינוי בסדרה?',
+//       deleteContent: 'האם אתה בטוח שברצונך למחוק אירוע זה?',
+//       deleteMultipleContent: 'האם אתה בטוח שברצונך למחוק את האירועים שנבחרו?',
+//       newEvent: 'אירוע חדש',
+//       title: 'כותרת',
+//       location: 'מקום',
+//       description: 'תיאור',
+//       timezone: 'אזור זמן',
+//       startTimezone: 'התחל את אזור הזמן',
+//       endTimezone: 'אזור זמן סיום',
+//       repeat: 'חזור',
+//       saveButton: 'שמור',
+//       cancelButton: 'בטל',
+//       deleteButton: 'מחק',
+//       recurrence: 'הישנות',
+//       wrongPattern: 'דפוס הישנות אינו תקף.',
+//       seriesChangeAlert:
+//         'האם ברצונך לבטל את השינויים שבוצעו במקרים ספציפיים של הסדרה הזו ולהתאים אותה לסדרה כולה שוב?',
+//       createError:
+//         'משך האירוע חייב להיות קצר יותר מתדירות התרחשותו. קצר את משך הזמן, או שנה את דפוס הישנות בעורך אירוע הישנות.',
+//       sameDayAlert: 'שני התרחשויות של אותו אירוע לא יכולים להתרחש באותו יום.',
+//       occurenceAlert:
+//         'לא ניתן לתזמן מחדש התרחשות של הפגישה החוזרת אם היא מדלגת על התרחשות מאוחרת יותר של אותו פגישה.',
+//       editRecurrence: 'ערוך הישנות',
+//       repeats: 'חוזר',
+//       alert: 'התראה',
+//       startEndError: 'תאריך הסיום שנבחר מתרחש לפני תאריך ההתחלה.',
+//       invalidDateError: 'ערך התאריך שהוזן אינו חוקי.',
+//       blockAlert: 'לא ניתן לתזמן אירועים בטווח הזמן החסום.',
+//       ok: 'בסדר',
+//       yes: 'כן',
+//       no: 'לא',
+//       occurrence: 'התרחשות',
+//       series: 'סדרה',
+//       previous: 'קודם',
+//       next: 'הבא',
+//       timelineDay: 'יום ציר הזמן',
+//       timelineWeek: 'שבוע ציר הזמן',
+//       timelineWorkWeek: 'שבוע עבודה של ציר זמן',
+//       timelineMonth: 'חודש ציר זמן',
+//       timelineYear: 'שנת ציר זמן',
+//       editFollowingEvent: 'בעקבות האירועים',
+//       deleteTitle: 'מחק אירוע',
+//       editTitle: 'ערוך אירוע',
+//       beginFrom: 'התחל מ',
+//       endAt: 'נגמר ב',
+//       expandAllDaySection: 'הרחב את החלק כל היום',
+//       collapseAllDaySection: 'קטע כווץ כל היום',
+//       searchTimezone: 'חפש באזור זמן',
+//       noRecords: 'לא נמצאו שיאים',
+//     },
+//     recurrenceeditor: {
+//       none: 'ללא חזרה',
+//       daily: 'יומי',
+//       weekly: 'שבועי',
+//       monthly: 'חודשי',
+//       month: 'חודש',
+//       yearly: 'שנתי',
+//       never: 'לעולם לא',
+//       until: 'עד',
+//       count: 'לספור',
+//       first: 'ראשון',
+//       second: 'שני',
+//       third: 'שלישית',
+//       fourth: 'רביעי',
+//       last: 'אחרון',
+//       repeat: 'חזור',
+//       repeatEvery: 'חזור על כל אחד',
+//       on: 'חזור על',
+//       end: 'סוף',
+//       onDay: 'יום',
+//       days: 'יום (ים)',
+//       weeks: 'שבוע (ים)',
+//       months: 'חודש (ים)',
+//       years: 'שנה (ים)',
+//       every: 'כל',
+//       summaryTimes: 'זמן (ים)',
+//       summaryOn: 'ב',
+//       summaryUntil: 'עד',
+//       summaryRepeat: 'חוזר',
+//       summaryDay: 'יום (ים)',
+//       summaryWeek: 'שבוע (ים)',
+//       summaryMonth: 'חודש (ים)',
+//       summaryYear: 'שנה (ים)',
+//       monthWeek: 'שבוע החודש',
+//       monthPosition: 'מיקום חודש',
+//       monthExpander: 'מרחיב חודש',
+//       yearExpander: 'שנה מרחיבה',
+//       repeatInterval: 'מרווח חוזר',
+//     },
+//     calendar: {
+//       today: 'היום',
+//     },
+//   },
+// });
+
 //Localization
-import * as numberingSystems from './culture-files/numberingSystems.json';
-import * as gregorian from './culture-files/ca-gregorian.json';
-import * as numbers from './culture-files/numbers.json';
-import * as timeZoneNames from './culture-files/timeZoneNames.json';
-import { L10n } from '@syncfusion/ej2-base'; 
-loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
 
-L10n.load({
-  he: {
-    schedule: {
-      day: 'יום',
-      week: 'שבוע',
-      workWeek: 'שבוע עבודה',
-      month: 'חודש',
-      year: 'שָׁנָה',
-      agenda: 'סדר יום',
-      weekAgenda: 'סדר יום בשבוע',
-      workWeekAgenda: 'סדר יום של שבוע עבודה',
-      monthAgenda: 'סדר יום לחודש',
-      today: 'היום',
-      noEvents: 'אין אירועים',
-      emptyContainer: 'לא נקבעו אירועים ביום זה.',
-      allDay: 'כל היום',
-      start: 'התחל',
-      end: 'סוף',
-      more: 'יותר',
-      close: 'סגור',
-      cancel: 'בטל',
-      noTitle: '(ללא כותרת)',
-      delete: 'מחק',
-      deleteEvent: 'האירוע הזה',
-      deleteMultipleEvent: 'מחק אירועים מרובים',
-      selectedItems: 'פריטים שנבחרו',
-      deleteSeries: 'סדרה שלמה',
-      edit: 'ערוך',
-      editSeries: 'סדרה שלמה',
-      editEvent: 'האירוע הזה',
-      createEvent: 'צור',
-      subject: 'נושא',
-      addTitle: 'הוסף כותרת',
-      moreDetails: 'פרטים נוספים',
-      save: 'שמור',
-      editContent: 'איך תרצה לשנות את המינוי בסדרה?',
-      deleteContent: 'האם אתה בטוח שברצונך למחוק אירוע זה?',
-      deleteMultipleContent: 'האם אתה בטוח שברצונך למחוק את האירועים שנבחרו?',
-      newEvent: 'אירוע חדש',
-      title: 'כותרת',
-      location: 'מקום',
-      description: 'תיאור',
-      timezone: 'אזור זמן',
-      startTimezone: 'התחל את אזור הזמן',
-      endTimezone: 'אזור זמן סיום',
-      repeat: 'חזור',
-      saveButton: 'שמור',
-      cancelButton: 'בטל',
-      deleteButton: 'מחק',
-      recurrence: 'הישנות',
-      wrongPattern: 'דפוס הישנות אינו תקף.',
-      seriesChangeAlert:
-        'האם ברצונך לבטל את השינויים שבוצעו במקרים ספציפיים של הסדרה הזו ולהתאים אותה לסדרה כולה שוב?',
-      createError:
-        'משך האירוע חייב להיות קצר יותר מתדירות התרחשותו. קצר את משך הזמן, או שנה את דפוס הישנות בעורך אירוע הישנות.',
-      sameDayAlert: 'שני התרחשויות של אותו אירוע לא יכולים להתרחש באותו יום.',
-      occurenceAlert:
-        'לא ניתן לתזמן מחדש התרחשות של הפגישה החוזרת אם היא מדלגת על התרחשות מאוחרת יותר של אותו פגישה.',
-      editRecurrence: 'ערוך הישנות',
-      repeats: 'חוזר',
-      alert: 'התראה',
-      startEndError: 'תאריך הסיום שנבחר מתרחש לפני תאריך ההתחלה.',
-      invalidDateError: 'ערך התאריך שהוזן אינו חוקי.',
-      blockAlert: 'לא ניתן לתזמן אירועים בטווח הזמן החסום.',
-      ok: 'בסדר',
-      yes: 'כן',
-      no: 'לא',
-      occurrence: 'התרחשות',
-      series: 'סדרה',
-      previous: 'קודם',
-      next: 'הבא',
-      timelineDay: 'יום ציר הזמן',
-      timelineWeek: 'שבוע ציר הזמן',
-      timelineWorkWeek: 'שבוע עבודה של ציר זמן',
-      timelineMonth: 'חודש ציר זמן',
-      timelineYear: 'שנת ציר זמן',
-      editFollowingEvent: 'בעקבות האירועים',
-      deleteTitle: 'מחק אירוע',
-      editTitle: 'ערוך אירוע',
-      beginFrom: 'התחל מ',
-      endAt: 'נגמר ב',
-      expandAllDaySection: 'הרחב את החלק כל היום',
-      collapseAllDaySection: 'קטע כווץ כל היום',
-      searchTimezone: 'חפש באזור זמן',
-      noRecords: 'לא נמצאו שיאים',
-    },
-    recurrenceeditor: {
-      none: 'ללא חזרה',
-      daily: 'יומי',
-      weekly: 'שבועי',
-      monthly: 'חודשי',
-      month: 'חודש',
-      yearly: 'שנתי',
-      never: 'לעולם לא',
-      until: 'עד',
-      count: 'לספור',
-      first: 'ראשון',
-      second: 'שני',
-      third: 'שלישית',
-      fourth: 'רביעי',
-      last: 'אחרון',
-      repeat: 'חזור',
-      repeatEvery: 'חזור על כל אחד',
-      on: 'חזור על',
-      end: 'סוף',
-      onDay: 'יום',
-      days: 'יום (ים)',
-      weeks: 'שבוע (ים)',
-      months: 'חודש (ים)',
-      years: 'שנה (ים)',
-      every: 'כל',
-      summaryTimes: 'זמן (ים)',
-      summaryOn: 'ב',
-      summaryUntil: 'עד',
-      summaryRepeat: 'חוזר',
-      summaryDay: 'יום (ים)',
-      summaryWeek: 'שבוע (ים)',
-      summaryMonth: 'חודש (ים)',
-      summaryYear: 'שנה (ים)',
-      monthWeek: 'שבוע החודש',
-      monthPosition: 'מיקום חודש',
-      monthExpander: 'מרחיב חודש',
-      yearExpander: 'שנה מרחיבה',
-      repeatInterval: 'מרווח חוזר',
-    },
-    calendar: {
-      today: 'היום',
-    },
-  },
-});
-
-//Localization
-
-const dataSource = require('./json/dataSource.json');
+ const dataSource = require('./json/dataSource.json');
 
 function App() {
   let scheduleObj = useRef(null);
@@ -175,35 +176,35 @@ function App() {
 
   const eventTemplate = (props) => {
     const dims = { width: '30px', height: '30px', margin: '5px'};
-    let financierImgUrl = null;
-    switch(props.Financier){
-        case 1: 
-            financierImgUrl = require('./assets/images/ClalitIcon.png');
-            break;
-        case 2: 
-            financierImgUrl = require('./assets/images/MaccabiIcon.png');
-            break;
-        case 3: 
-            financierImgUrl = require('./assets/images/MeuhedetIcon.png');
-            break;
-        case 4: 
-            financierImgUrl = require('./assets/images/LeumitIcon.png');
-            break;
-        default:
-            financierImgUrl = require('./assets/images/HAlonIcon.png');
-            break;
-    }
+    let financierImgUrl = require('./assets/images/ClalitIcon.png');   
+    // switch(props.Financier){
+    //     case 1: 
+    //         financierImgUrl = require('./assets/images/ClalitIcon.png');
+    //         break;
+    //     case 2: 
+    //         financierImgUrl = require('./assets/images/MaccabiIcon.png');
+    //         break;
+    //     case 3: 
+    //         financierImgUrl = require('./assets/images/MeuhedetIcon.png');
+    //         break;
+    //     case 4: 
+    //         financierImgUrl = require('./assets/images/LeumitIcon.png');
+    //         break;
+    //     default:
+    //         financierImgUrl = require('./assets/images/HAlonIcon.png');
+    //         break;
+    // }
     return (<div className="template-wrap" >
-      <div className={riderStyles.riderDivEvent}>
+      <div className='template'>
       <div className="subject">
-        <div className={riderStyles.riderName}>{props.RiderName + (props.Age != null ? " (" + props.Age  + ")": "")}</div></div>
+        <div className='riderName'>{props.RiderName + (props.Age != null ? " (" + props.Age  + ")": "")}</div></div>
       <div className="image">
         <img src={financierImgUrl} alt="Financier" style={dims}/></div>
-        </div>
+      </div>
     </div>);
   }
   
-  const eventSettings = { dataSource: data, fields: fieldsData, template: eventTemplate , ignoreWhitespace: true }
+  const eventSettings = { dataSource: data, fields: fieldsData, template: eventTemplate, ignoreWhitespace: true }
   
   const editorTemplate = (props) => {
    
@@ -211,7 +212,7 @@ function App() {
      
       <table className="custom-event-editor">
         <tbody>
-          <tr>
+          {/* <tr>
             <td className="e-textlabel" id="tdRiders">
               Rider
             </td>
@@ -234,7 +235,7 @@ function App() {
                 ></DropDownListComponent>
               )}
             </td>
-          </tr>
+          </tr> */}
           <tr>
             <td className="e-textlabel">Status</td>
             <td colSpan={4}>
@@ -305,11 +306,12 @@ function App() {
     );
 }
 
-const resourceDataSource = [
-    {Name: "יאיר קובי", Id: 9, Color: '#ea7a57', workDays: [0, 1, 2, 4], startHour: '14:00', endHour: '20:30'},
-    {Name: "ניר קליימן", Id: 8, Color: '#357CD2', workDays: [0, 1, 2], startHour: '14:00', endHour: '19:30'},
-    {Name: "חגי הלוי", Id: 47, Color: '#7fa900', workDays: [ 0, 2, 3], startHour: '14:00', endHour: '18:30'},
-];
+const resourceDataSource = dataSource.resources;
+// [
+//     {Name: "יאיר קובי", Id: 9, Color: '#ea7a57', workDays: [0, 1, 2, 4], startHour: '14:00', endHour: '20:30'},
+//     {Name: "ניר קליימן", Id: 8, Color: '#357CD2', workDays: [0, 1, 2], startHour: '14:00', endHour: '19:30'},
+//     {Name: "חגי הלוי", Id: 47, Color: '#7fa900', workDays: [ 0, 2, 3], startHour: '14:00', endHour: '18:30'},
+// ];
 const fields = { text: 'Name', value: 'Id' };
 
 const resourceHeaderTemplate = (props) => {
@@ -440,7 +442,7 @@ const onChange = (args) => {
             width="auto"
             height="650px"
             resourceHeaderTemplate={resourceHeaderTemplate}
-            group={{ resources: ["Instructors"] }}
+            group={{ resources: ["Instructors"] ,byDate: true, hideNonWorkingDays: true}}
             renderCell={onRenderCell}
             editorTemplate={editorTemplate.bind(this)}
             created={onCreate}
@@ -455,7 +457,7 @@ const onChange = (args) => {
             eventClick={onEventClick}
             popupOpen={onPopupOpen}
             popupClose={onPopupClose}
-            locale="he"
+            // locale="he"
             enableRtl={true}
             startHour="08:00"
             endHour="23:00"
