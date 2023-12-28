@@ -341,17 +341,17 @@ const resourceHeaderTemplate = (props) => {
   };
 
   const onRenderCell = (args) => {
-    if (args !== undefined && args !== null && args.element !== undefined && args.element !== null && 
-      (args.element.classList.contains('e-work-hours') ||
-      args.element.classList.contains('e-work-cells'))
-    ) {
-      addClass(
-        [args.element],
-        ['willsmith', 'alice', 'robson'][
-          parseInt(args.element.getAttribute('data-group-index'), 10)
-        ]
-      );
-    }
+    // if (args !== undefined && args !== null && args.element !== undefined && args.element !== null && 
+    //   (args.element.classList.contains('e-work-hours') ||
+    //   args.element.classList.contains('e-work-cells'))
+    // ) {
+    //   addClass(
+    //     [args.element],
+    //     ['willsmith', 'alice', 'robson'][
+    //       parseInt(args.element.getAttribute('data-group-index'), 10)
+    //     ]
+    //   );
+    // }
   };
 
 const onEventRendered = (args) => {
@@ -417,7 +417,7 @@ const onChange = (args) => {
   return (
     <div className="schedule-control-section">
       <div className="col-lg-12 control-section">
-      <div className='col-lg-3 property-section'>
+      {/* <div className='col-lg-3 property-section'>
         <PropertyPane title='בחר מדריכים להצגה' className='float-right'>
                 <ul className='no-bullets'>
                     <li className='float-right'>
@@ -431,7 +431,7 @@ const onChange = (args) => {
                     </li>
                 </ul>
         </PropertyPane>
-      </div>
+      </div> */}
         <div className="control-wrapper">
           <ScheduleComponent
             ref={scheduleObj}
@@ -442,7 +442,7 @@ const onChange = (args) => {
             width="auto"
             height="650px"
             resourceHeaderTemplate={resourceHeaderTemplate}
-            group={{ resources: ["Instructors"] ,byDate: true, hideNonWorkingDays: true}}
+            group={{ resources: ["Instructors"], hideNonWorkingDays:true }}
             renderCell={onRenderCell}
             editorTemplate={editorTemplate.bind(this)}
             created={onCreate}
